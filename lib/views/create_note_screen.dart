@@ -18,42 +18,70 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Note"),
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.black,
+        title: Text(
+          "Create Note",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          children: [
-            Container(
-              child: TextFormField(
-                controller: noteController,
-                maxLines: null,
-                decoration: InputDecoration(
-                  hintText: "Add Note",
+      body: Padding(
+        padding: const EdgeInsets.only(top: 60.0),
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            children: [
+              Container(
+                child: TextFormField(
+                  controller: noteController,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    hintText: "Add Your Note",
+                  ),
                 ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                var note = noteController.text.trim();
-                if (note != "") {
-                  try {
-                    await FirebaseFirestore.instance
-                        .collection("notes")
-                        .doc()
-                        .set({
-                      "createdAt": DateTime.now(),
-                      "note": note,
-                      "userId": userId?.uid,
-                    });
-                  } catch (e) {
-                    print("Error $e");
+              SizedBox(
+                height: 30.0,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 3.0,
+                  padding:
+                      EdgeInsets.symmetric(vertical: 16.0, horizontal: 40.0),
+                ),
+                onPressed: () async {
+                  var note = noteController.text.trim();
+                  if (note != "") {
+                    try {
+                      await FirebaseFirestore.instance
+                          .collection("notes")
+                          .doc()
+                          .set({
+                        "createdAt": DateTime.now(),
+                        "note": note,
+                        "userId": userId?.uid,
+                      });
+                    } catch (e) {
+                      print("Error $e");
+                    }
                   }
-                }
-              },
-              child: Text("Add Note"),
-            )
-          ],
+                },
+                child: Text(
+                  "Add Note",
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

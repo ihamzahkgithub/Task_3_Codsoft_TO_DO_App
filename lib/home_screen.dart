@@ -23,14 +23,28 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Screen"),
+        backgroundColor: Colors.black,
+        title: Text(
+          "Home Screen",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
         actions: [
           GestureDetector(
             onTap: () {
               FirebaseAuth.instance.signOut();
               Get.off(() => LoginScreen());
             },
-            child: Icon(Icons.logout),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
@@ -66,13 +80,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   var finalDate = DateTime.parse(date.toDate().toString());
 
                   return Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     child: ListTile(
+                      contentPadding: EdgeInsets.all(16.0),
                       title: Text(
                         note,
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                      subtitle: Text(GetTimeAgo.parse(
-                        finalDate,
-                      )),
+                      subtitle: Text(
+                        GetTimeAgo.parse(finalDate),
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.grey,
+                        ),
+                      ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -86,7 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               );
                             },
-                            child: Icon(Icons.edit),
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.black, // Customize icon color
+                            ),
                           ),
                           SizedBox(
                             width: 10.0,
@@ -98,7 +129,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .doc(docId)
                                   .delete();
                             },
-                            child: Icon(Icons.delete),
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.black, // Customize icon color
+                            ),
                           ),
                         ],
                       ),
@@ -113,10 +147,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
         onPressed: () {
           Get.to(() => CreateNoteScreen());
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

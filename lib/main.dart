@@ -10,6 +10,8 @@ import 'views/sign_in_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  //for plateform error -> applevel build.gradle
+
   await Firebase.initializeApp(
     options: FirebaseOptions(
       apiKey: "AIzaSyCKAWa40eJho6Z25Ad0lGV6lzsqNF1eNW0",
@@ -18,6 +20,8 @@ void main() async {
       projectId: "my-note-a66f2",
     ),
   );
+
+  //till here
   await Firebase.initializeApp();
 
   runApp(
@@ -46,7 +50,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Note App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

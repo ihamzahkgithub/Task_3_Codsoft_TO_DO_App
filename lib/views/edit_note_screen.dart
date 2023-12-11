@@ -21,35 +21,57 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.black,
         title: Text(
           "Edit Note",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
       ),
-      body: Container(
-          child: Column(
-        children: [
-          TextFormField(
-            controller: noteController
-              ..text = "${Get.arguments['note'].toString()}",
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              await FirebaseFirestore.instance
-                  .collection("notes")
-                  .doc(Get.arguments['docId'].toString())
-                  .update(
-                {
-                  'note': noteController.text.trim(),
-                },
-              ).then((value) => {
-                        Get.offAll(() => HomeScreen()),
-                        log("Data Updated"),
-                      });
-            },
-            child: Text("Update"),
-          ),
-        ],
-      )),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 30),
+        child: Container(
+            child: Column(
+          children: [
+            TextFormField(
+              controller: noteController
+                ..text = "${Get.arguments['note'].toString()}",
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 3.0,
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 40.0),
+              ),
+              onPressed: () async {
+                await FirebaseFirestore.instance
+                    .collection("notes")
+                    .doc(Get.arguments['docId'].toString())
+                    .update(
+                  {
+                    'note': noteController.text.trim(),
+                  },
+                ).then((value) => {
+                          Get.offAll(() => HomeScreen()),
+                          log("Data Updated"),
+                        });
+              },
+              child: Text("Update"),
+            ),
+          ],
+        )),
+      ),
     );
   }
 }

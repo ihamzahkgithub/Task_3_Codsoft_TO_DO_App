@@ -24,9 +24,13 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Login Screen"),
+        title: Text(
+          "Login Screen",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         // ignore: prefer_const_literals_to_create_immutables
         // actions: [
         //   Icon(Icons.more_vert),
@@ -70,9 +74,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 18.0,
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 3.0,
+                  padding:
+                      EdgeInsets.symmetric(vertical: 16.0, horizontal: 60.0),
+                ),
                 onPressed: () async {
                   var loginEmail = loginEmailController.text.trim();
                   var loginPassword = loginPasswordController.text.trim();
@@ -91,10 +105,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     print("Error $e");
                   }
                 },
-                child: Text("Login"),
+                child: Text(
+                  "Login",
+                  style: TextStyle(fontSize: 16.0),
+                ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 20.0,
+                width: 20.0,
               ),
               GestureDetector(
                 onTap: () {
@@ -104,7 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Card(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Text("Forgot Password"),
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ),
                   ),
                 ),
@@ -118,9 +139,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Container(
                   child: Card(
+                    color: Colors.white10,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Text("Don't have an account SignUp"),
+                      child: Text(
+                        "Don't have an account? SignUp",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),

@@ -21,8 +21,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text("Forgot Password"),
+        title: Text(
+          "Forgot Password",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         // ignore: prefer_const_literals_to_create_immutables
         // actions: [
         //   Icon(Icons.more_vert),
@@ -53,9 +61,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 30.0,
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 3.0,
+                  padding:
+                      EdgeInsets.symmetric(vertical: 16.0, horizontal: 40.0),
+                ),
                 onPressed: () async {
                   var forgotEmail = forgetPasswordController.text.trim();
 

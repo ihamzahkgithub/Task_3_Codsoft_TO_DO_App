@@ -30,8 +30,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text("SignUp Screen"),
+        title: Text(
+          "SignUp Screen",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         // ignore: prefer_const_literals_to_create_immutables
         // actions: [
         //   Icon(Icons.more_vert),
@@ -108,6 +113,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 10.0,
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 3.0,
+                  padding:
+                      EdgeInsets.symmetric(vertical: 16.0, horizontal: 60.0),
+                ),
                 onPressed: () async {
                   var userName = userNameController.text.trim();
                   var userPhone = userPhoneController.text.trim();
@@ -138,6 +153,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
                 child: Container(
                   child: Card(
+                    color: Colors.white12,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text("Already have an account Sign In"),
